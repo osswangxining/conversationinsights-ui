@@ -3,7 +3,7 @@ angular
 .controller('AsideController', AsideController)
 
 function AsideController($scope, $rootScope, $interval, NLU_Parse, NLU_Config, NLU_Version, Settings, NLU_Status, IntentResponse) {
-  $scope.test_text = 'I want italian food in new york';
+  $scope.test_text = '';
   $scope.test_text_response = {};
   $rootScope.config = {}; //Initilize in case server is not online at startup
   var configcheck;
@@ -20,7 +20,8 @@ function AsideController($scope, $rootScope, $interval, NLU_Parse, NLU_Config, N
       }
 
       if ($rootScope.settings['refresh_time'] !== "-1" && $rootScope.settings['refresh_time'] !== undefined) {
-        configcheck = $interval(getConfig, parseInt($rootScope.settings['refresh_time']));
+        //configcheck = $interval(getConfig, parseInt($rootScope.settings['refresh_time']));
+        configcheck = $interval(getConfig, 600000);
       }
 
       getConfig();
@@ -56,13 +57,14 @@ function AsideController($scope, $rootScope, $interval, NLU_Parse, NLU_Config, N
 
   $scope.executeTestRequest = function() {
     $scope.response_text=''
+    $scope.response_entities=''
     var options = {};
     var model = '';
     if ($scope.modelname !== 'Default') {
       model = $scope.modelname;
     }
     options = {query: $scope.test_text, model: model};
-    var inputData = {'q':$scope.test_text};
+    var inputData = {'q':$scope.test_text,'model':model};
     NLU_Parse.parse(options, JSON.stringify(inputData), function(data) {
       console.log(data.intent);
       console.log(data.entities);
@@ -70,6 +72,15 @@ function AsideController($scope, $rootScope, $interval, NLU_Parse, NLU_Config, N
       var t = {'intent': data.intent, 'entities': data.entities, 'intent_ranking': data.intent_ranking};
       $scope.test_text_response = t;
       $scope.response_text = data.intent.name;
+      var entities_length = data.entities.length;
+      console.log("entities_length:" + entities_length)
+      for(var i = 0; i < entities_length; i++) {
+        //console.log(data.entities[i])
+        if(i > 0) {
+          $scope.response_entities += ",";
+        }
+        $scope.response_entities += "@" + data.entities[i].entity + "=" + data.entities[i].value;
+      }
     });
   }
 }

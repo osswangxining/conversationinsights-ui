@@ -5,11 +5,11 @@ angular
 function TrainingController($scope, $rootScope, $interval, $http, NLU_Status, Agent, Intents, Expressions, ExpressionParameters, NLU_Config
   , NLU_AgentModel) {
   var exportData;
-  var statuscheck = $interval(getConversationInsightsStatus, 5000);
+  var statuscheck = $interval(getMynluStatus, 6000000);
   $scope.generateError = "";
   $scope.trainings_under_this_process = 0;
 
-  getConversationInsightsStatus();
+  getMynluStatus();
 
   $scope.$on("$destroy", function(){
     $interval.cancel(statuscheck);
