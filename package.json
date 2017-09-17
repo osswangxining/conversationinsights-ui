@@ -1,0 +1,31 @@
+{
+  "name": "ConversationInsightsUI",
+  "version": "0.0.1",
+  "description": "Conversation Insights is one conversational dialogue service based on NLP/NLU, machine learning, and deep learning.",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "http-proxy-middleware": "^0.17.4",
+    "pg-promise": "^5.9.5",
+    "request": "^2.81.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.16.0",
+    "connect-livereload": "^0.6.0",
+    "gulp": "^3.9.1"
+  },
+  "config": {
+    "mynluserver": "http://127.0.0.1:8080",
+    "postgresConnectionString": "postgres://postgres:passw0rd@127.0.0.1:5432/postgres"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "author": "Xi Ning Wang",
+  "url": "http://",
+  "copyright": "Copyright 2017",
+  "license": "http://"
+}
