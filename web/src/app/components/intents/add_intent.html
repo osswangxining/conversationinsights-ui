@@ -1,5 +1,5 @@
 <ol class="breadcrumb" breadcrumb="">
-        <li class="breadcrumb-item ng-scope active"><span>Agent > {{ agent.agent_name }} > Add Intent</span></li>
+        <li class="breadcrumb-item ng-scope active"><span>机器人代理 > {{ agent.agent_name }} > 增加意图</span></li>
 </ol>
 <div class="container-fluid">
     <div class="animated fadeIn">
@@ -8,21 +8,21 @@
                 <form ng-submit="addIntent()">
                             <div class="card">
                                 <div class="card-header">
-                                    <strong>New Intent</strong>
+                                    <strong>新增意图</strong>
                                 </div>
                                 <div class="card-block">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <input type="text" ng-model="formData.intent_name" class="form-control" id="name" placeholder="Enter the intent name">
+                                                <label for="name">名称</label>
+                                                <input type="text" ng-model="formData.intent_name" class="form-control" id="name" placeholder="请输入意图名称">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
                             <div class="card-footer">
-                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Save</button>
+                                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> 保存</button>
                             </div>
                           </div>
                 </form>
