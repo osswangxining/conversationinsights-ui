@@ -1,9 +1,9 @@
 <ol class="breadcrumb" breadcrumb="">
-        <li class="breadcrumb-item ng-scope active"><span>Entity > {{entity.entity_name }}</span></li>
+        <li class="breadcrumb-item ng-scope active"><span>实体 > {{entity.entity_name }}</span></li>
 
         <li class="breadcrumb-menu">
           <div class="btn-group" role="group">
-            <a class="btn btn-secondary" ng-click="deleteEntity()" confirm-click-title="Delete Entity" confirm-click="Are you sure? This will delete the entity and all of its synonyms."><i class="icon-trash"></i> &nbsp;Delete Entity</a>
+            <a class="btn btn-secondary" ng-click="deleteEntity()" confirm-click-title="删除实体" confirm-click="此操作将会删除该实体及其关联的同义词。是否确定删除？"><i class="icon-trash"></i> &nbsp;删除实体</a>
           </div>
         </li>
 </ol>
@@ -13,21 +13,21 @@
             <div class="col-sm-12 col-lg-12">
               <div class="card">
                   <div class="card-header">
-                      <strong>Synonyms</strong>
+                      <strong>同义词</strong>
                   </div>
                   <div class="card-block">
                       <div class="row">
                           <div class="col-sm-12">
                               <div class="form-group">
-                                  <label for="name">Reference value ...</label>
-                                  <input id="synonym_reference" type="text" ng-model="formData.synonym_reference" class="form-control" placeholder="Any synonyms matched, will resolve to this value">
+                                  <label for="name">参考值</label>
+                                  <input id="synonym_reference" type="text" ng-model="formData.synonym_reference" class="form-control" placeholder="请输入可能的同义词...">
                               </div>
                           </div>
                       </div>
                   </div>
 
               <div class="card-footer">
-                <button type="submit" class="btn btn-sm btn-primary" ng-click="saveNewSynonym()"><i class="fa fa-dot-circle-o"></i> Save</button>
+                <button type="submit" class="btn btn-sm btn-primary" ng-click="saveNewSynonym()"><i class="fa fa-dot-circle-o"></i> 保存</button>
               </div>
 
               <div class="card-block" ng-show="synonymsList.length > 0">
@@ -38,7 +38,7 @@
                                   {{ synonym.synonym_reference }}
                                 </td>
                                 <td>
-                                  <tags-input min-length="1" replace-spaces-with-dashes="false" on-tag-removed="synonymRemoved($tag, synonym.synonym_id)" on-tag-added="synonymAdded($tag, synonym.synonym_id)" add-on-comma="true" ng-init="getEntitySynonymVariants(synonym.synonym_id)" id="synonym_values_{{synonym.synonym_id}}" ng-model="tags[synonym.synonym_id]" placeholder="Enter synonyms comma seperated ..."></tags-input>
+                                  <tags-input min-length="1" replace-spaces-with-dashes="false" on-tag-removed="synonymRemoved($tag, synonym.synonym_id)" on-tag-added="synonymAdded($tag, synonym.synonym_id)" add-on-comma="true" ng-init="getEntitySynonymVariants(synonym.synonym_id)" id="synonym_values_{{synonym.synonym_id}}" ng-model="tags[synonym.synonym_id]" placeholder="输入同义词，逗号隔开..."></tags-input>
                                   <!-- <input type="text" ng-blur="saveSynonyms(synonym.synonym_id)" class="form-control" > -->
                                 </td>
                                 <td class="col-md-1" align="center">

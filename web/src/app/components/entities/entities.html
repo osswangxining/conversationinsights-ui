@@ -1,9 +1,9 @@
 <ol class="breadcrumb" breadcrumb="">
-        <li class="breadcrumb-item ng-scope active"><span>Entities</span></li>
+        <li class="breadcrumb-item ng-scope active"><span>实体</span></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu">
             <div class="btn-group" role="group">
-                <a class="btn btn-secondary" href="#!/entity/add"><i class="icon-plus"></i> &nbsp;Add Entity</a>
+                <a class="btn btn-secondary" href="#!/entity/add"><i class="icon-plus"></i> &nbsp;增加实体</a>
             </div>
         </li>
 </ol>
@@ -12,7 +12,7 @@
         <div class="row">
               <div class="col-sm-12 col-lg-12">
                 <div class="list-group">
-                  <a class="list-group-item" ng-href="#!/entity/{{entity.entity_id}}/synonyms" ng-repeat="entity in entitiesList track by entity.entity_id">{{ entity.entity_name }}</a>
+                  <a class="list-group-item" ng-href="#!/entity/{{entity.entity_id}}/synonyms" ng-repeat="entity in entitiesList track by entity.entity_id">@{{ entity.entity_name }}</a>
                 </div>
               </div>
             </div>
