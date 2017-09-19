@@ -81,7 +81,7 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
         //Loop through each parameter and highlight the words it is for
         for (var z = 0; z <= $scope.expressionList.length; z++) {
           if ($scope.expressionList[z] !== undefined) {
-            var text = $scope.expressionList[z].expression_text;
+            var text = $scope.expressionList[z].name;
             for (var i = 0; i <= data.length - 1; i++) {
               if ($scope.expressionList[z].expression_id === data[i].expression_id) {
                 text = highlight(text, data[i].parameter_value);
@@ -97,10 +97,11 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
     if (selectedText !== "") {
       var expressionText = $('#expression_' + expression_id).text();
       var newObj = {};
-      newObj.expression_id = expression_id;
-      newObj.parameter_start = expressionText.indexOf(selectedText);
-      newObj.parameter_end = newObj.parameter_start + selectedText.length;
-      newObj.parameter_value = selectedText;
+      newObj.expressionId = expression_id;
+      newObj.start = expressionText.indexOf(selectedText);
+      newObj.end = newObj.start + selectedText.length;
+      newObj.name = selectedText;
+      newObj.required = false;
       Parameter.save(newObj).$promise.then(function() {
         loadExpressions();
       });
@@ -118,8 +119,8 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
 
   $scope.addExpression = function() {
     var newObj = {};
-    newObj.intent_id = $scope.$routeParams.intent_id;
-    newObj.expression_text = this.expression_text;
+    newObj.intentId = $scope.$routeParams.intent_id;
+    newObj.name = this.expression_text;
 
     Expression.save(newObj).$promise.then(function() {
       $scope.expression_text = '';

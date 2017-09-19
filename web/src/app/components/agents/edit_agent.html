@@ -1,9 +1,9 @@
 <ol class="breadcrumb" breadcrumb="">
-        <li class="breadcrumb-item ng-scope active"><span>机器人代理 > {{ agent.agent_name }} > 意图</span></li>
+        <li class="breadcrumb-item ng-scope active"><span>机器人代理 > {{ agent.name }} > 意图</span></li>
         <!-- Breadcrumb Menu-->
         <li class="breadcrumb-menu">
             <div class="btn-group" role="group">
-                <a class="btn btn-secondary" href="#!/agent/{{agent.agent_id}}/intent/add"><i class="icon-plus"></i> &nbsp;增加意图</a>
+                <a class="btn btn-secondary" href="#!/agent/{{agent.id}}/intent/add"><i class="icon-plus"></i> &nbsp;增加意图</a>
                 <a class="btn btn-secondary" ng-click="deleteAgent()" confirm-click-title="删除代理" confirm-click="此操作将会删除该机器人代理、及其所有的意图和关联的实体。是否确定删除？">
                   <i class="icon-trash"></i> &nbsp;删除代理</a>
             </div>
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12">
               <div class="list-group">
-                <a href="#!/agent/{{intent.agent_id}}/intent/{{ intent.intent_id }}" class="list-group-item" ng-repeat="intent in intentList track by intent.intent_id">#{{ intent.intent_name }}</a>
+                <a href="#!/agent/{{intent.agentId}}/intent/{{ intent.id }}" class="list-group-item" ng-repeat="intent in intentList track by intent.id">#{{ intent.name }}</a>
               </div>
 
             </div>

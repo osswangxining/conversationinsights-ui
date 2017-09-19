@@ -25,7 +25,7 @@ app.factory('UniqueIntentEntities', function($resource) {
 });
 
 app.factory('Parameters', function($resource) {
-  return $resource(api_endpoint_v2 + '/intent/:intent_id/parameters');
+  return $resource(api_endpoint_v2 + '/intents/:intent_id/parameters');
 });
 
 app.factory('ExpressionParameters', function($resource) {
@@ -48,7 +48,7 @@ app.factory('Entities', function($resource) {
 });
 
 app.factory('EntitySynonyms', function($resource) {
-  return $resource(api_endpoint_v2 + '/entity/:entity_id/synonyms', {entity_id:'@id'});
+  return $resource(api_endpoint_v2 + '/entities/:entity_id/synonyms', {entity_id:'@id'});
 });
 
 app.factory('Synonym', function($resource) {

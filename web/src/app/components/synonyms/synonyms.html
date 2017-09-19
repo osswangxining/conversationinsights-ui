@@ -1,5 +1,5 @@
 <ol class="breadcrumb" breadcrumb="">
-        <li class="breadcrumb-item ng-scope active"><span>实体 > {{entity.entity_name }}</span></li>
+        <li class="breadcrumb-item ng-scope active"><span>实体 > {{entity.name }}</span></li>
 
         <li class="breadcrumb-menu">
           <div class="btn-group" role="group">
@@ -20,7 +20,7 @@
                           <div class="col-sm-12">
                               <div class="form-group">
                                   <label for="name">参考值</label>
-                                  <input id="synonym_reference" type="text" ng-model="formData.synonym_reference" class="form-control" placeholder="请输入可能的同义词...">
+                                  <input id="synonym_reference" type="text" ng-model="formData.name" class="form-control" placeholder="请输入可能的同义词...">
                               </div>
                           </div>
                       </div>
@@ -33,16 +33,16 @@
               <div class="card-block" ng-show="synonymsList.length > 0">
                     <table class="table table-bordered">
                         <tbody>
-                            <tr ng-repeat="synonym in synonymsList | orderBy:'synonym_id':true">
+                            <tr ng-repeat="synonym in synonymsList | orderBy:'id':true">
                                 <td class="col-md-2">
-                                  {{ synonym.synonym_reference }}
+                                  {{ synonym.name }}
                                 </td>
                                 <td>
-                                  <tags-input min-length="1" replace-spaces-with-dashes="false" on-tag-removed="synonymRemoved($tag, synonym.synonym_id)" on-tag-added="synonymAdded($tag, synonym.synonym_id)" add-on-comma="true" ng-init="getEntitySynonymVariants(synonym.synonym_id)" id="synonym_values_{{synonym.synonym_id}}" ng-model="tags[synonym.synonym_id]" placeholder="输入同义词，逗号隔开..."></tags-input>
+                                  <tags-input min-length="1" replace-spaces-with-dashes="false" on-tag-removed="synonymRemoved($tag, synonym.id)" on-tag-added="synonymAdded($tag, synonym.id)" add-on-comma="true" ng-init="getEntitySynonymVariants(synonym.id)" id="synonym_values_{{synonym.id}}" ng-model="tags[synonym.id]" placeholder="输入同义词，逗号隔开..."></tags-input>
                                   <!-- <input type="text" ng-blur="saveSynonyms(synonym.synonym_id)" class="form-control" > -->
                                 </td>
                                 <td class="col-md-1" align="center">
-                                  <button class="btn btn btn-outline-danger" ng-click="deleteSynonym(synonym.synonym_id)">
+                                  <button class="btn btn btn-outline-danger" ng-click="deleteSynonym(synonym.id)">
                                     <span class="icon-trash"></span>
                                   </button>
                                 </td>

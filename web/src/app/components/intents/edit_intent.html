@@ -1,5 +1,5 @@
 <ol class="breadcrumb" breadcrumb="">
-  <li class="breadcrumb-item ng-scope active"><span>机器人代理 > {{ agent.agent_name }} > 意图 > {{ intent.intent_name }}</span></li>
+  <li class="breadcrumb-item ng-scope active"><span>机器人代理 > {{ agent.name }} > 意图 > {{ intent.name }}</span></li>
   <!-- Breadcrumb Menu-->
   <li class="breadcrumb-menu">
     <div class="btn-group" role="group">
@@ -36,26 +36,26 @@
             <div class="card-block">
               <div class="row">
                 <div class="col-sm-12">
-                  <div class="list-group" ng-repeat="expression in expressionList track by expression.expression_id">
+                  <div class="list-group" ng-repeat="expression in expressionList track by expression.id">
                     <div class="list-group-item">
-                      <span id="expression_{{expression.expression_id}}" ng-bind-html="expression.expression_highlighted_text | trusted"></span>
+                      <span id="expression_{{expression.id}}" ng-bind-html="expression.expression_highlighted_text | trusted"></span>
                       <span class="pull-right">
                         <span class="badge badge-default badge-pill mr-2" ng-hide="parameterFilterList.length == 0">{{ parameterFilterList.length }}</span>
-                        <button class="btn btn-secondary" ng-click="runExpression(expression.expression_text)">
+                        <button class="btn btn-secondary" ng-click="runExpression(expression.name)">
                           <span class="icon-energy"></span>
                         </button>
-                        <button class="btn btn-secondary" ng-click="addParameter(expression.expression_id)">
+                        <button class="btn btn-secondary" ng-click="addParameter(expression.id)">
                           <span class="icon-link"></span>
                         </button>
-                        <button class="btn btn-secondary mr-2" data-toggle="collapse" ng-click="toggleArrow(expression.expression_id)" data-target="#table_expression_{{expression.expression_id}}" aria-expanded="false" aria-controls="table_expression_{{expression.expression_id}}">
-                          <span class="icon-arrow-down" id="icon_expression_{{expression.expression_id}}"></span>
+                        <button class="btn btn-secondary mr-2" data-toggle="collapse" ng-click="toggleArrow(expression.id)" data-target="#table_expression_{{expression.id}}" aria-expanded="false" aria-controls="table_expression_{{expression.id}}">
+                          <span class="icon-arrow-down" id="icon_expression_{{expression.id}}"></span>
                         </button>
-                        <button class="btn btn btn-outline-danger" confirm-click-title="Delete Expression" confirm-click="Are you sure? This will delete the expression and all its resolved entities." ng-click="deleteExpression(expression.expression_id)">
+                        <button class="btn btn btn-outline-danger" confirm-click-title="Delete Expression" confirm-click="Are you sure? This will delete the expression and all its resolved entities." ng-click="deleteExpression(expression.id)">
                           <span class="icon-trash"></span>
                         </button>
                       </span>
                     </div>
-                    <div class="collapse" id="table_expression_{{expression.expression_id}}">
+                    <div class="collapse" id="table_expression_{{expression.id}}">
                       <table class="table table-bordered" ng-hide="parameterFilterList == null || parameterFilterList.length == 0">
                         <thead>
                           <tr>
@@ -67,13 +67,13 @@
                         <tbody>
                           <tr ng-repeat="parameter in parameterFilterList = (parameterList | orderBy: parameter_id  | filter: { expression_id: expression.expression_id })">
                             <td class="col-md-3">
-                              <select ng-options="entity.entity_id as entity.entity_name for entity in entityList" ng-change="updateParameterEntity(parameter.parameter_id, parameter.entity_id)" ng-model="parameter.entity_id" class="form-control">
+                              <select ng-options="entity.id as entity.name for entity in entityList" ng-change="updateParameterEntity(parameter.parameter_id, parameter.entity_id)" ng-model="parameter.entity_id" class="form-control">
                                 <option value="">Please select one</option>
                               </select>
                             </td>
-                            <td class="td-middle">{{ parameter.parameter_value }}</td>
+                            <td class="td-middle">{{ parameter.name }}</td>
                             <td class="col-md-1">
-                              <button class="btn btn btn-outline-danger" ng-click="deleteParameter(parameter.parameter_id)">
+                              <button class="btn btn btn-outline-danger" ng-click="deleteParameter(parameter.id)">
                                 <span class="icon-trash"></span>
                               </button>
                             </td>

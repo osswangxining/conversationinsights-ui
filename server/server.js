@@ -18,6 +18,68 @@ app.use('/', express.static('web/src/'));
 
 app.use('/api/v2/', routes);
 
+app.use('/api/v2/agents', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/intents', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/expressions', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/parameters', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/entities', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/synonyms', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/variants', function(req, res) { executeRequest(req, res)} );
+
+function executeRequest(req, res) {
+  try {
+    //Strip /api off request
+    var request_url = req.originalUrl.split('/api/v2')[1];
+
+    console.log(req.method + ": " + request_url + " -> " + process.env.npm_package_config_mynluserver + request_url);
+
+    var path = url.parse(req.url).pathname.split('/').pop();
+
+    if (req.method === 'GET') {
+      myresponse = "";
+      response_text = "";
+
+      request(process.env.npm_package_config_mynluserver + request_url, function (error, response, body) {
+        try {
+          if (body !== undefined) {
+            sendOutput(200, res, body);
+            // TODO: Check that the response includes the required fields, otherwise, return the incomplete flag? Maybe this should rather be in the backend
+          } else {
+            sendOutput(404, res, '{"error" : "Server Error"}');
+          }
+          //res.end();
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    } else if (req.method === 'OPTIONS') {
+      try {
+        sendOutput(200, res);
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (req.method === 'POST' && path == 'parse') {
+
+    } else {
+      request({
+        method: req.method,
+        uri: process.env.npm_package_config_mynluserver + request_url,
+        body: JSON.stringify(req.body),
+        headers: req.headers
+      }, function (error, response, body) {
+        try {
+          sendOutput(200, res, "");
+          console.log(response);
+        } catch (err) {
+          console.log(err);
+        }
+      });
+    }
+  } catch (err) {
+    console.log("Error: " + err);
+  }
+}
+
 app.use('/api/v2/conversationinsights/', function(req, res) {
   try {
     //Strip /api off request

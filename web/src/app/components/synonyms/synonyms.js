@@ -35,8 +35,8 @@ function SynonymController($scope, Synonym, EntitySynonymVariants, EntitySynonym
 
   $scope.synonymAdded = function(tag, synonym_id) {
     var objNew = {};
-    objNew.synonym_value = tag.text;
-    objNew.synonym_id = synonym_id;
+    objNew.name = tag.text;
+    objNew.synonymId = synonym_id;
     SynonymVariant.save(objNew);
   }
 
@@ -44,7 +44,7 @@ function SynonymController($scope, Synonym, EntitySynonymVariants, EntitySynonym
     EntitySynonymVariants.query({synonym_id: synonym_id}).$promise.then(function(data) {
       var tags = [];
       for (var i = 0; i <= data.length - 1; i++) {
-        tags.push({text: data[i].synonym_value, synonym_variant_id: data[i].synonym_variant_id});
+        tags.push({text: data[i].name, synonym_variant_id: data[i].id});
       }
       $scope.tags[synonym_id] = tags;
     });
@@ -52,7 +52,7 @@ function SynonymController($scope, Synonym, EntitySynonymVariants, EntitySynonym
 
   $scope.saveNewSynonym = function() {
     //First save the synonym into the synonym table
-    var obNew = {entity_id: $scope.$routeParams.entity_id, synonym_reference: $('#synonym_reference').val()};
+    var obNew = {entityId: $scope.$routeParams.entity_id, name: $('#synonym_reference').val()};
     $('#synonym_reference').val('');
     Synonym.save(obNew).$promise.then(function(resp) {
       loadSynonyms();
