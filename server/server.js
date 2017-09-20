@@ -72,7 +72,6 @@ function executeRequest(req, res) {
       }, function (error, response, body) {
         try {
           sendOutput(200, res, "");
-          console.log(response);
         } catch (err) {
           console.log(err);
         }
@@ -163,7 +162,8 @@ app.use('/api/v2/conversationinsights/', function(req, res) {
 
     if (path == 'parse') {
       var model = getParameterByName('model', request_url) !== undefined ? getParameterByName('model', request_url) : "default";
-      logRequest(req, path, {model: model, intent: '', query: getParameterByName('q', request_url)});
+      var content = {model: model, intent: '', query: getParameterByName('q', request_url)};
+      logRequest(req, path, JSON.stringify(content));
     } else {
       logRequest(req, path);
     }
@@ -225,16 +225,16 @@ function logRequest(req, type, data) {
     obj.query = req.originalUrl;
     obj.eventType = type;
     obj.eventData = data;
-    console.log( "obj:" + JSON.stringify(obj))
+    //console.log( "obj:" + JSON.stringify(obj))
     request({
       method: 'POST',
       uri: process.env.npm_package_config_mynluserver + "/nlu_log",
       body: JSON.stringify(obj),
-      headers: req.headers
+      headers: {'Content-Type': 'application/json'}
     }, function (error, response, body) {
       try {
         //sendOutput(200, res, "");
-        console.log(response);
+        //console.log(response);
       } catch (err) {
         console.log(err);
       }

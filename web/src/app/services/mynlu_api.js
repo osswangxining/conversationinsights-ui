@@ -1,5 +1,5 @@
 app.factory('NLU_Parse', function($resource) {
-  return $resource(api_endpoint_v2 + '/conversationinsights/parse', {query:'@id', model: '@id'}, {
+  return $resource(api_endpoint_v2 + '/conversationinsights/parse', {q:'@id', model: '@id'}, {
     parse: {
       method:'POST'
     }

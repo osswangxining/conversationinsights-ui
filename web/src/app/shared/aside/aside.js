@@ -63,7 +63,7 @@ function AsideController($scope, $rootScope, $interval, NLU_Parse, NLU_Config, N
     if ($scope.modelname !== 'Default') {
       model = $scope.modelname;
     }
-    options = {query: $scope.test_text, model: model};
+    options = {q: $scope.test_text, model: model};
     var inputData = {'q':$scope.test_text,'model':model};
     NLU_Parse.parse(options, JSON.stringify(inputData), function(data) {
       console.log(data.intent);
