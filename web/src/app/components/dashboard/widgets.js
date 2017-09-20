@@ -43,13 +43,13 @@ function usageChartCtrl($scope, NLU_log, NLU_log_intent_usage_by_day, NLU_log_av
       var labels = [];
 
       for (var i = 0; i <= elements - 1; i++) {
-        labels.push(data[i].to_char);
+        labels.push(data[i].logtime);
         data1.push(data[i].count);
         data2.push(avg_data[0].avg);
       }
 
       $scope.labels = labels;
-      $scope.series = ['Processed', 'Average'];
+      $scope.series = ['总共', '平均'];
       $scope.data = [ data1, data2];
       $scope.colors = [{
         backgroundColor: convertHex(brandInfo,10),

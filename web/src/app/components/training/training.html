@@ -18,7 +18,7 @@
                         <label class="col-md-3 form-control-label" for="select">代理</label>
                       </div>
                       <div class="col-sm-3">
-                        <select id="agent_name" ng-change="getData(agent.agent_id)" ng-options="agent.agent_id as agent.agent_name for agent in agentList" ng-model="agent.agent_id" class="form-control">
+                        <select id="agent_name" ng-change="getData(agent.id)" ng-options="agent.id as agent.name for agent in agentList" ng-model="agent.id" class="form-control">
                           <option value="">Please select one</option>
                         </select>
                       </div>

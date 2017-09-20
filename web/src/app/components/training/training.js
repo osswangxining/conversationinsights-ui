@@ -20,11 +20,11 @@ function TrainingController($scope, $rootScope, $interval, $http, NLU_Status, Ag
   });
 
   $scope.train = function() {
-    var agentname = objectFindByKey($scope.agentList, 'agent_id', $scope.agent.agent_id).agent_name;
+    var agentname = objectFindByKey($scope.agentList, 'id', $scope.agent.id).name;
 
     var id = new XDate().toString('yyyyMMdd-HHmmss');
-    console.log(api_endpoint_v2 + "/conversationinsights/agent/"+$scope.agent.agent_id+"/train?name=" + agentname + "_" + id);
-    $http.post(api_endpoint_v2 + "/conversationinsights/agent/"+$scope.agent.agent_id+"/train?name=" + agentname + "_" + id, '{}');
+    console.log(api_endpoint_v2 + "/conversationinsights/agent/"+$scope.agent.id+"/train?name=" + agentname + "_" + id);
+    $http.post(api_endpoint_v2 + "/conversationinsights/agent/"+$scope.agent.id+"/train?name=" + agentname + "_" + id, '{}');
     //$http.post(api_endpoint_v2 + "/conversationinsights/train?name=" + agentname + "_" + id, JSON.stringify(exportData));
     //Minimize training data
     $scope.exportdata = {};

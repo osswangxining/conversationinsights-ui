@@ -3,17 +3,17 @@ app.factory('NLU_log', function($resource) {
 });
 
 app.factory('NLU_log_intent_usage_by_day', function($resource) {
-  return $resource(api_endpoint_v2 + '/intent_usage_by_day');
+  return $resource(api_endpoint_v2 + '/dashboard/intent_usage_by_day');
 });
 
 app.factory('NLU_log_avg_intent_usage_by_day', function($resource) {
-  return $resource(api_endpoint_v2 + '/avg_intent_usage_by_day');
+  return $resource(api_endpoint_v2 + '/dashboard/avg_intent_usage_by_day');
 });
 
 app.factory('NLU_log_intent_usage_total', function($resource) {
-  return $resource(api_endpoint_v2 + '/intent_usage_total');
+  return $resource(api_endpoint_v2 + '/dashboard/intent_usage_total');
 });
 
 app.factory('NLU_log_request_usage_total', function($resource) {
-  return $resource(api_endpoint_v2 + '/request_usage_total');
+  return $resource(api_endpoint_v2 + '/dashboard/request_usage_total');
 });

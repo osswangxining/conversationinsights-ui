@@ -60,9 +60,9 @@ router.get('/entity_synonym_variants', variants.getEntitySynonymVariantsQuery); 
 //router.delete('/variants/:synonym_variant_id', variants.removeVariant);
 //router.delete('/synonyms/:synonym_id/variants', variants.removeSynonymVariants);
 
-router.get('/settings', settings.getSettings);
-router.get('/settings/:setting_name', settings.getSingleSetting);
-router.put('/settings/:setting_name', settings.updateSetting);
+//router.get('/settings', settings.getSettings);
+//router.get('/settings/:setting_name', settings.getSingleSetting);
+//router.put('/settings/:setting_name', settings.updateSetting);
 
 
 router.get('/response/:intent_id', responses.getIntentResponses);
@@ -71,10 +71,10 @@ router.delete('/response/:response_id', responses.removeIntentResponse);
 
 router.get('/rndmresponse', responses.getRandomResponseForIntent);
 
-router.get('/nlu_log/:query', logs.getLogs);
-router.get('/intent_usage_by_day', logs.getIntentUsageByDay);
-router.get('/intent_usage_total', logs.getIntentUsageTotal);
-router.get('/request_usage_total', logs.getRequestUsageTotal);
-router.get('/avg_intent_usage_by_day', logs.getAvgIntentUsageByDay);
+//router.get('/nlu_log/:query', logs.getLogs);
+//router.get('/intent_usage_by_day', logs.getIntentUsageByDay);
+//router.get('/intent_usage_total', logs.getIntentUsageTotal);
+//router.get('/request_usage_total', logs.getRequestUsageTotal);
+//router.get('/avg_intent_usage_by_day', logs.getAvgIntentUsageByDay);
 
 module.exports = router;

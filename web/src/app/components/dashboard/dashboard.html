@@ -1,5 +1,5 @@
 <ol class="breadcrumb" breadcrumb="">
-        <li class="breadcrumb-item ng-scope active"><span>Dashboard</span></li>
+        <li class="breadcrumb-item ng-scope active"><span>仪表板</span></li>
 </ol>
 <div class="container-fluid">
 
@@ -10,7 +10,7 @@
                 <div class="card-block p-a-1 clearfix">
                     <i class="fa fa-user bg-primary p-a-1 font-2xl m-r-1 pull-left"></i>
                     <div class="h5 text-gray-light m-b-0 m-t-h">{{ request_processed }}</div>
-                    <div class="text-muted text-uppercase font-weight-bold font-xs">Requests Processed</div>
+                    <div class="text-muted text-uppercase font-weight-bold font-xs">请求处理次数</div>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
               <div class="card-block p-a-1 clearfix">
                   <i class="fa fa-tag bg-info p-a-1 font-2xl m-r-1 pull-left"></i>
                   <div class="h5 text-gray-dark m-b-0 m-t-h">{{ intents_processed }}</div>
-                  <div class="text-muted text-uppercase font-weight-bold font-xs">Intents Processed</div>
+                  <div class="text-muted text-uppercase font-weight-bold font-xs">意图识别次数</div>
               </div>
           </div>
       </div>
@@ -28,7 +28,7 @@
             <div class="card-block p-a-1 clearfix">
                 <i class="fa fa-graduation-cap bg-info p-a-1 font-2xl m-r-1 pull-left"></i>
                 <div class="h5 text-gray-dark m-b-0 m-t-h">{{ trainings_under_this_process }}</div>
-                <div class="text-muted text-uppercase font-weight-bold font-xs">Training jobs Running</div>
+                <div class="text-muted text-uppercase font-weight-bold font-xs">正在进行模型训练</div>
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
           <div class="card-block p-a-1 clearfix">
               <i class="fa fa-database bg-primary p-a-1 font-2xl m-r-1 pull-left"></i>
               <div class="h5 text-gray-dark m-b-0 m-t-h">{{ available_models.length }}</div>
-              <div class="text-muted text-uppercase font-weight-bold font-xs">Available Models</div>
+              <div class="text-muted text-uppercase font-weight-bold font-xs">可用的模型</div>
           </div>
       </div>
   </div>
@@ -48,8 +48,8 @@
             <div class="card-block">
                 <div class="row">
                     <div class="col-sm-5">
-                        <h4 class="card-title mb-0">Usage</h4>
-                        <div class="small text-muted">Last 30 days</div>
+                        <h4 class="card-title mb-0">使用次数</h4>
+                        <div class="small text-muted">过去30天</div>
                     </div>
                     <!--/.col-->
                 </div>

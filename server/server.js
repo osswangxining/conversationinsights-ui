@@ -25,6 +25,9 @@ app.use('/api/v2/parameters', function(req, res) { executeRequest(req, res)} );
 app.use('/api/v2/entities', function(req, res) { executeRequest(req, res)} );
 app.use('/api/v2/synonyms', function(req, res) { executeRequest(req, res)} );
 app.use('/api/v2/variants', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/settings', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/nlu_log', function(req, res) { executeRequest(req, res)} );
+app.use('/api/v2/dashboard', function(req, res) { executeRequest(req, res)} );
 
 function executeRequest(req, res) {
   try {
@@ -78,6 +81,7 @@ function executeRequest(req, res) {
   } catch (err) {
     console.log("Error: " + err);
   }
+  logRequest(req, path);
 }
 
 app.use('/api/v2/conversationinsights/', function(req, res) {
@@ -214,19 +218,27 @@ function getParameterByName(name, url) {
 }
 
 function logRequest(req, type, data) {
+
   try {
     var obj = {};
-    obj.ip_address = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    obj.ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     obj.query = req.originalUrl;
-    obj.event_type = type;
-    obj.event_data = data;
-
-    db.any('insert into nlu_log(ip_address, query, event_type, event_data)' +
-      'values(${ip_address}, ${query}, ${event_type}, ${event_data})',
-      obj)
-      .catch(function (err) {
+    obj.eventType = type;
+    obj.eventData = data;
+    console.log( "obj:" + JSON.stringify(obj))
+    request({
+      method: 'POST',
+      uri: process.env.npm_package_config_mynluserver + "/nlu_log",
+      body: JSON.stringify(obj),
+      headers: req.headers
+    }, function (error, response, body) {
+      try {
+        //sendOutput(200, res, "");
+        console.log(response);
+      } catch (err) {
         console.log(err);
-      });
+      }
+    });
   } catch (err) {
     console.log("Error: " + err);
   }
