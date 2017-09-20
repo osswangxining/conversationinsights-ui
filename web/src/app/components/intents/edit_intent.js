@@ -21,7 +21,19 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
   function loadExpressions() {
     Expressions.query({intent_id: $scope.$routeParams.intent_id}, function(data) {
         $scope.expressionList = data;
-        loadParameters();
+        //loadParameters(data);
+        for (var z = 0; z <= $scope.expressionList.length; z++) {
+          if ($scope.expressionList[z] !== undefined) {
+            var text = $scope.expressionList[z].name;
+            var parameters = $scope.expressionList[z].parameters;
+            for (var i = 0; i < parameters.length; i++) {
+              if ($scope.expressionList[z].id === parameters[i].expressionId) {
+                text = highlight(text, parameters[i].name);
+              }
+            }
+            $scope.expressionList[z].expression_highlighted_text = text;
+          }
+        }
       });
   }
   function loadResponses(){
@@ -62,10 +74,23 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
 
   $scope.toggleArrow = function(expression_id) {
     if ($('#table_expression_' + expression_id).hasClass('show')) {
+
       $('#icon_expression_' + expression_id).removeClass('icon-arrow-up').addClass('icon-arrow-down')
     } else {
+      $scope.parameterFilterList = []
+      for (var z = 0; z <= $scope.expressionList.length; z++) {
+        if ($scope.expressionList[z] !== undefined) {
+          var expressionId = $scope.expressionList[z].id;
+          var parameters = $scope.expressionList[z].parameters;
+          if(expressionId == expression_id) {
+            $scope.parameterFilterList = parameters;
+          }
+        }
+      }
+
       $('#icon_expression_' + expression_id).removeClass('icon-arrow-down').addClass('icon-arrow-up')
     }
+
   }
 
   function loadUniqueIntentEntities() {
@@ -93,9 +118,10 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
       });
   }
   $scope.addParameter = function(expression_id) {
-    var selectedText = window.getSelection().toString();
+    var selectedText = window.getSelection().toString().trim();
     if (selectedText !== "") {
       var expressionText = $('#expression_' + expression_id).text();
+      console.log("expressionText:" + expressionText)
       var newObj = {};
       newObj.expressionId = expression_id;
       newObj.start = expressionText.indexOf(selectedText);
@@ -129,8 +155,8 @@ function EditIntentController($rootScope, $scope, Agent, Intent, Expressions, Ex
   }
 
   $scope.updateParameterEntity = function(param_id, entity_id) {
-    Parameter.update({parameter_id: param_id}, {parameter_id: param_id, entity_id: entity_id}).$promise.then(function() {
-      loadUniqueIntentEntities();
+    Parameter.update({parameter_id: param_id}, {id: param_id, entityId: entity_id}).$promise.then(function() {
+      //loadUniqueIntentEntities();
     });
   }
 

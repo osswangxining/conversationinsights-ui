@@ -26,14 +26,14 @@ var logs = require('../db/logs');
 //router.post('/intents', intents.createAgentIntent);
 //router.delete('/intents/:intent_id', intents.removeIntent);
 
-router.get('/intent_expressions', expressions.getIntentExpressionQuery); //Used for training
+///////router.get('/intent_expressions', expressions.getIntentExpressionQuery); //Used for training
 
 //router.get('/intents/:intent_id/expressions', expressions.getIntentExpressions);
 //router.get('/expressions/:expression_id', expressions.getSingleExpression);
 //router.post('/expressions', expressions.createIntentExpression);
 //router.delete('/expressions/:expression_id', expressions.removeExpression);
 
-router.get('/expression_parameters', parameters.getExpressionParametersQuery); //Used for training
+/////////router.get('/expression_parameters', parameters.getExpressionParametersQuery); //Used for training
 
 //router.get('/expresions/:expression_id/parameters', parameters.getExpressionParameters);
 //router.get('/parameters/:parameter_id', parameters.getSingleParameter);
@@ -52,7 +52,7 @@ router.get('/expression_parameters', parameters.getExpressionParametersQuery); /
 //router.post('/synonyms', synonyms.createEntitySynonym);
 //router.delete('/synonyms/:synonym_id', synonyms.removeSynonym);
 
-router.get('/entity_synonym_variants', variants.getEntitySynonymVariantsQuery); //Used for training
+////////router.get('/entity_synonym_variants', variants.getEntitySynonymVariantsQuery); //Used for training
 
 //router.get('/synonyms/:synonym_id/variants', variants.getEntitySynonymVariants);
 //router.get('/variants/:synonym_variant_id', variants.getSingleVariant);

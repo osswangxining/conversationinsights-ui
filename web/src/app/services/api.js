@@ -13,7 +13,7 @@ app.factory('Intents', function($resource) {
 });
 
 app.factory('Expressions', function($resource) {
-  return $resource(api_endpoint_v2 + '/intents/:intent_id/expressions', {intent_id:'@id'});
+  return $resource(api_endpoint_v2 + '/intents/:intent_id/expressions/parameters', {intent_id:'@id'});
 });
 
 app.factory('Expression', function($resource) {

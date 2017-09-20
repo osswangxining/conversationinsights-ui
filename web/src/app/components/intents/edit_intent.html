@@ -14,7 +14,7 @@
         <form>
           <div class="card">
             <div class="card-header">
-              <strong>增加表达</strong>
+              <strong>增加表达式</strong>
             </div>
             <div class="card-block">
               <div class="row">
@@ -40,7 +40,7 @@
                     <div class="list-group-item">
                       <span id="expression_{{expression.id}}" ng-bind-html="expression.expression_highlighted_text | trusted"></span>
                       <span class="pull-right">
-                        <span class="badge badge-default badge-pill mr-2" ng-hide="parameterFilterList.length == 0">{{ parameterFilterList.length }}</span>
+                        <span class="badge badge-default badge-pill mr-2" ng-hide="expression.parameters == null || expression.parameters.length == 0">{{ expression.parameters.length }}</span>
                         <button class="btn btn-secondary" ng-click="runExpression(expression.name)">
                           <span class="icon-energy"></span>
                         </button>
@@ -50,13 +50,13 @@
                         <button class="btn btn-secondary mr-2" data-toggle="collapse" ng-click="toggleArrow(expression.id)" data-target="#table_expression_{{expression.id}}" aria-expanded="false" aria-controls="table_expression_{{expression.id}}">
                           <span class="icon-arrow-down" id="icon_expression_{{expression.id}}"></span>
                         </button>
-                        <button class="btn btn btn-outline-danger" confirm-click-title="Delete Expression" confirm-click="Are you sure? This will delete the expression and all its resolved entities." ng-click="deleteExpression(expression.id)">
+                        <button class="btn btn btn-outline-danger" confirm-click-title="删除表达式" confirm-click="该操作将会删除该表达式及其对应的实体关联等。是否确定删除？" ng-click="deleteExpression(expression.id)">
                           <span class="icon-trash"></span>
                         </button>
                       </span>
                     </div>
                     <div class="collapse" id="table_expression_{{expression.id}}">
-                      <table class="table table-bordered" ng-hide="parameterFilterList == null || parameterFilterList.length == 0">
+                      <table class="table table-bordered" ng-hide="expression.parameters == null || expression.parameters.length == 0">
                         <thead>
                           <tr>
                             <th>实体</th>
@@ -65,9 +65,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="parameter in parameterFilterList = (parameterList | orderBy: parameter_id  | filter: { expression_id: expression.expression_id })">
+                          <tr ng-repeat="parameter in expression.parameters">
                             <td class="col-md-3">
-                              <select ng-options="entity.id as entity.name for entity in entityList" ng-change="updateParameterEntity(parameter.parameter_id, parameter.entity_id)" ng-model="parameter.entity_id" class="form-control">
+                              <select ng-options="entity.id as entity.name for entity in entityList" ng-change="updateParameterEntity(parameter.id, parameter.entityId)" ng-model="parameter.entityId" class="form-control">
                                 <option value="">Please select one</option>
                               </select>
                             </td>
@@ -89,6 +89,7 @@
         </div>
       </div>
     </div>
+    <!--
 
     <div class="row">
       <div class="col-sm-12 col-lg-12">
@@ -116,5 +117,6 @@
           </div>
         </div>
       </div>
+-->
   </div>
 </div>
