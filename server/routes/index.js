@@ -1,16 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var agents = require('../db/agents');
-var intents = require('../db/intents');
-var expressions = require('../db/expressions');
-var parameters = require('../db/parameters');
-var entities = require('../db/entities');
-var synonyms = require('../db/synonyms');
-var variants = require('../db/variants');
-var settings = require('../db/settings');
+
 var responses = require('../db/responses');
-var logs = require('../db/logs');
+
 
 //router.get('/agents', agents.getAllAgents);
 //router.get('/agents/:agent_id', agents.getSingleAgent);
