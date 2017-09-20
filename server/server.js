@@ -5,7 +5,7 @@ var app = express();
 var request = require('request');
 var routes = require('./routes/index')
 var cors = require('cors')
-const db = require('./db/db')
+//const db = require('./db/db')
 
 app.use(cors())
 
