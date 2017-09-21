@@ -41,7 +41,7 @@ function TrainingController($scope, $rootScope, $interval, $http, NLU_Status, Ag
 
   $scope.getData = function(agent_id) {
     NLU_AgentModel.get({'agentId':agent_id}).$promise.then(function(data) {
-      $scope.exportdata = data.mynlu_data;
+      $scope.exportdata = data;
       $scope.generateError = "";
     });
   }
