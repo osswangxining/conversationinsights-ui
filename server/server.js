@@ -173,7 +173,7 @@ app.use('/api/v2/conversationinsights/', function(req, res) {
 });
 
 function augmentParse(res){
-  if (myresponse !== '' && response_text !== '') {
+  if (myresponse !== '' ) {
     var objResponse = JSON.parse(myresponse);
     objResponse.response_text = response_text;
     sendOutput(200, res, JSON.stringify(objResponse));
@@ -192,19 +192,19 @@ function sendOutput(http_code, res, body) {
 }
 
 function getResponseText(intent_name, res) {
-  db.any('SELECT responses.response_text FROM responses, intents where responses.intent_id = intents.intent_id and intents.intent_name = $1 order by random() LIMIT 1', intent_name)
-    .then(function (data) {
-      if (data.length > 0) {
-        response_text = data[0].response_text;
-      } else {
-        response_text = undefined;
-      }
-      augmentParse(res);
-    })
-    .catch(function (err) {
-      //res.write(err);
-      console.log(err);
-    });
+  // db.any('SELECT responses.response_text FROM responses, intents where responses.intent_id = intents.intent_id and intents.intent_name = $1 order by random() LIMIT 1', intent_name)
+  //   .then(function (data) {
+  //     if (data.length > 0) {
+  //       response_text = data[0].response_text;
+  //     } else {
+  //       response_text = undefined;
+  //     }
+  //     augmentParse(res);
+  //   })
+  //   .catch(function (err) {
+  //     //res.write(err);
+  //     console.log(err);
+  //   });
 }
 
 function getParameterByName(name, url) {
