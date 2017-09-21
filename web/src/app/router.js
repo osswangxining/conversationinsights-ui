@@ -70,6 +70,16 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl:'/app/components/settings/settings.html',
       activePage:'settings'
     })
+    .when('/dialogs', {
+      controller:'DialogsController',
+      templateUrl:'/app/components/dialogs/dialogs.html',
+      activePage:'dialogs'
+    })
+    .when('/actions', {
+      controller:'ActionsController',
+      templateUrl:'/app/components/actions/actions.html',
+      activePage:'actions'
+    })
     .otherwise({
       redirectTo:'/'
     });
