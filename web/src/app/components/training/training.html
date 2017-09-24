@@ -40,20 +40,22 @@
                   </div>
                 </div>
                 <div class="card-header">
-                    <strong>Available Models</strong>
+                    <strong>可用模型</strong>
                 </div>
                 <div class="card-block">
                   <table class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>Create Date/Time</th>
-                        <th>Path</th>
+                        <th>训练时间</th>
+                        <th>模型文件</th>
+                        <th>评估结果</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr ng-repeat="model in available_models track by model.folder | orderBy: datetime : true">
                         <td>{{ model.date }}</td>
                         <td>{{ model.folder }}</td>
+                        <td>{{ model.evaluation }}</td>
                       </tr>
                     </tbody>
                   </table>
