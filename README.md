@@ -16,9 +16,9 @@ Start this as one nodejs application.
 
 ### Prerequisites
 
-[PostgreSQL](https://www.postgresql.org/) - Used for storing training data (entities, intents, synonyms, etc.)
+[MongoDB](https://www.mongodb.com/) - Used for storing training data (entities, intents, synonyms, etc.)
 
-[Node.js/npm](https://nodejs.org/en/) - Serves UI and acts as a middleware server for logging (to the PostgreSQL DB)
+[Node.js/npm](https://nodejs.org/en/) - Serves UI and acts as a middleware server for logging to the mongodb DB)
 
 
 ### Installing
